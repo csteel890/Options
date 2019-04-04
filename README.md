@@ -12,5 +12,6 @@ Options are priced using the Black Scholes equation with an initial hedge being 
 
 An in-memory database has been created with SQLite3 to store the price and initial delta of any new option which is created.
 
-The code can be extended by amending the calling_object to be a portfolio of options. Once an option has been sold, the portfolio would not care how the option is being hedged, only that it is being hedged correctly. Hence why the calling object is currently polymorphically executing the delta method.
+The code can be extended by amending the calling_object to be a portfolio of options. Once an option has been sold, the portfolio would not care how the options are being hedged, only that they are being hedged correctly. Hence why the calling object is currently polymorphically executing the delta method.
 
+The purpose of the code is to demonstrate some basic OOP features in the context of Finance.
