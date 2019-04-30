@@ -2,16 +2,28 @@
 #Options project
 
 
+Derivatives script utilising OOP in Python. 
 
-Derivatives project utilising OOP in Python. 
+The rationale behind the script Option_delta.py is to demonstrate under which conditions delta hedging a written option may be a viable solution. 
 
-The assumption is that a financial institution is writing options and would like a way to store their price and initial hedge data.
+An example output of the script is:
 
-Options are priced using the Black Scholes equation with an initial hedge being calculated on the basis the only source of risk is fluctuations in the underlying stock. The Option is created within the parent class (acting as an abstract class) with specific methods polymorphically delegated to each respective child class representing either a call option or a put option.
-          
 
-An in-memory database has been created with SQLite3 to store the price and initial delta of any new option which is created.
+dV = [c(t + dt) - c(t)] - deltaC[S(t + dt) - S(t)] 
+ 
+              Option_Price        dV
+Stock_Price                        
+80               0.149788  4.416661
+90               1.029372  1.270922
+95               2.103008  0.331897
+99               3.394782  0.013542
+100              3.783772  0.000000
+101              4.199913  0.013609
+105              6.136671  0.340237
+110              9.147661  1.338566
+120             16.792490  4.958073
 
-The code can be extended by amending the calling_object to be a portfolio of options. Once an option has been sold, the portfolio would not care how the options are being hedged, only that they are being hedged correctly. Hence why the calling object is currently polymorphically executing the delta method.
 
-The purpose of the code is to demonstrate some basic OOP features in the context of Finance.
+From when the option is sold, each row of the first column indicates a next possible stock price of the underlying stock at which point in time the portfolio (consisting of the option itself and the underlying stock) would next be re-balanced. As can be seen, the change in the value of the portfolio can only be considered negligible when the change in the price of the underlying changes by a small amount.
+
+The output seems to be consistent with theory - the first derivative of the price of the call option w.r.t. the stock assumes a linear relationship which is actually only true for small price movements of the stock as the true relationship is non-linear.
